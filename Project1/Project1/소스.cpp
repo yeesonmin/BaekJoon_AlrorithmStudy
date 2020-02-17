@@ -53,13 +53,20 @@ void quickSort(int *data, int start, int end)
 
 int main()
 {
-	int number = 10;
-	int data[10] = { 1, 10, 5, 8, 7, 6, 4, 3, 2, 9 };
+	int n;
+	cin >> n;
 
-	quickSort(data, 0, number - 1);
-	for (int i = 0; i < number; i++)
+	int *arr = new int[n];
+	for (int i = 0; i < n; i++)
 	{
-		cout << data[i];
+		cin >> arr[i];
+	}
+
+	quickSort(arr, 0, n - 1);
+
+	for (int i = 0; i < n; i++)
+	{
+		cout << arr[i] << '\n';
 	}
 
 
