@@ -3,8 +3,12 @@
 #include <vector>
 using namespace std;
 
-int number = 10;
-int data[10] = { 1,10,5,8,7,6,4,3,2,9 };
+//퀵정렬 공부
+//동빈나
+//https://www.youtube.com/watch?v=O-O-90zX-U4&list=PLRx0vPvlEmdDHxCvAQS1_6XV4deOwfVrz&index=5
+//https://www.youtube.com/watch?v=gBcUO_6JXIA&list=PLRx0vPvlEmdDHxCvAQS1_6XV4deOwfVrz&index=6
+
+
 
 void quickSort(int *data, int start, int end)
 {
@@ -20,7 +24,7 @@ void quickSort(int *data, int start, int end)
 
 	while (i <= j)
 	{
-		while (data[i] <= data[key] && i < end)
+		while (data[i] <= data[key] && i <= end)
 		{
 			//기준값보다 큰 값을 만날 때 까지 반복
 			i++;
@@ -32,16 +36,31 @@ void quickSort(int *data, int start, int end)
 		}
 		if (i > j) {
 			temp = data[j];
+			data[j] = data[key];
+			data[key] = temp;
 
 		}
+		else
+		{
+			temp = data[i];
+			data[i] = data[j];
+			data[j] = temp;
+		}
 	}
+	quickSort(data, start, j - 1);
+	quickSort(data, j + 1, end);
 }
+
 int main()
 {
-	//퀵정렬 공부
-	//동빈나
-	//https://www.youtube.com/watch?v=O-O-90zX-U4&list=PLRx0vPvlEmdDHxCvAQS1_6XV4deOwfVrz&index=5
-	//https://www.youtube.com/watch?v=gBcUO_6JXIA&list=PLRx0vPvlEmdDHxCvAQS1_6XV4deOwfVrz&index=6
+	int number = 10;
+	int data[10] = { 1, 10, 5, 8, 7, 6, 4, 3, 2, 9 };
+
+	quickSort(data, 0, number - 1);
+	for (int i = 0; i < number; i++)
+	{
+		cout << data[i];
+	}
 
 
 }
