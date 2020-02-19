@@ -3,9 +3,9 @@
 #include <vector>
 using namespace std;
 
-//퀵정렬 복습
+//퀵정렬 복습2
 
-void Quicksort(int *arr, int start, int end)
+void quicksort(int *arr, int start, int end)
 {
 	if (start >= end)
 	{
@@ -17,48 +17,49 @@ void Quicksort(int *arr, int start, int end)
 	int j = end;
 	int temp;
 
-	while (i <= j)
+	while (i<=j)
 	{
-		while (arr[i] <= arr[key] && i <= end)
+		while (arr[i] <= arr[key] && i < end)
 		{
 			i++;
 		}
-		while (arr[j] >= arr[key] && j>start)
+		while (arr[j] >= arr[key] && j > start)
 		{
 			j--;
 		}
 
-		if (i > j)
+		if (i < j)
+		{
+			temp = arr[j];
+			arr[j] = arr[i];
+			arr[i] = temp;
+		}
+		else
 		{
 			temp = arr[j];
 			arr[j] = arr[key];
 			arr[key] = temp;
-			
-		}
-		else
-		{
-			temp = arr[i];
-			arr[i] = arr[j];
-			arr[j] = temp;
 		}
 	}
-	
-	Quicksort(arr, start, j - 1);
-	Quicksort(arr, j + 1, end);
+
+	quicksort(arr, start, j - 1);
+	quicksort(arr, j + 1, end);
+
 }
 int main()
 {
-
-	int *arr = new int[10];
-	for (int i = 0; i < _msize(arr)/ sizeof(arr[0]); i++) //_msize : 동적배열 크기 구할 때 사용
+	int n = 10;
+	int arr[10];
+	for (int i = 0; i < n; i++)
 	{
 		cin >> arr[i];
 	}
-	Quicksort(arr, 0, (_msize(arr) / sizeof(arr[0])) - 1);
 
-	for (int i = 0; i < _msize(arr) / sizeof(arr[0]); i++)
+	quicksort(arr, 0, n - 1);
+	
+	for (int i = 0; i < n; i++)
 	{
-		cout << arr[i] << '\n';
+		cout << arr[i] <<'\n';
 	}
-
+	
 }
