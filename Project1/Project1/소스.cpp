@@ -1,73 +1,64 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <algorithm>
 #include <vector>
 using namespace std;
 
-//ÄüÁ¤·Ä °øºÎ
-//µ¿ºó³ª
-//https://www.youtube.com/watch?v=O-O-90zX-U4&list=PLRx0vPvlEmdDHxCvAQS1_6XV4deOwfVrz&index=5
-//https://www.youtube.com/watch?v=gBcUO_6JXIA&list=PLRx0vPvlEmdDHxCvAQS1_6XV4deOwfVrz&index=6
+//í€µì •ë ¬ ë³µìŠµ
 
-
-
-void quickSort(int *data, int start, int end)
+void Quicksort(int *arr, int start, int end)
 {
 	if (start >= end)
 	{
 		return;
 	}
 
-	int key = start; //±âÁØ°ª
+	int key = start;
 	int i = start + 1;
 	int j = end;
 	int temp;
 
 	while (i <= j)
 	{
-		while (data[i] <= data[key] && i <= end)
+		while (arr[i] <= arr[key] && i <= end)
 		{
-			//±âÁØ°ªº¸´Ù Å« °ªÀ» ¸¸³¯ ¶§ ±îÁö ¹İº¹
 			i++;
 		}
-		while (data[j] >= data[key] && j > start)
+		while (arr[j] >= arr[key] && j>start)
 		{
-			//±âÁØ°ªº¸´Ù ÀÛÀº °ªÀ» ¸¸³¯ ¶§ ±îÁö ¹İº¹
 			j--;
 		}
-		if (i > j) {
-			temp = data[j];
-			data[j] = data[key];
-			data[key] = temp;
 
+		if (i > j)
+		{
+			temp = arr[j];
+			arr[j] = arr[key];
+			arr[key] = temp;
+			
 		}
 		else
 		{
-			temp = data[i];
-			data[i] = data[j];
-			data[j] = temp;
+			temp = arr[i];
+			arr[i] = arr[j];
+			arr[j] = temp;
 		}
 	}
-	quickSort(data, start, j - 1);
-	quickSort(data, j + 1, end);
+	
+	Quicksort(arr, start, j - 1);
+	Quicksort(arr, j + 1, end);
 }
-
 int main()
 {
-	int n;
-	cin >> n;
 
-	int *arr = new int[n];
-	for (int i = 0; i < n; i++)
+	int *arr = new int[10];
+	for (int i = 0; i < _msize(arr)/ sizeof(arr[0]); i++) //_msize : ë™ì ë°°ì—´ í¬ê¸° êµ¬í•  ë•Œ ì‚¬ìš©
 	{
 		cin >> arr[i];
 	}
+	Quicksort(arr, 0, (_msize(arr) / sizeof(arr[0])) - 1);
 
-	quickSort(arr, 0, n - 1);
-
-	for (int i = 0; i < n; i++)
+	for (int i = 0; i < _msize(arr) / sizeof(arr[0]); i++)
 	{
 		cout << arr[i] << '\n';
 	}
-
 
 }
