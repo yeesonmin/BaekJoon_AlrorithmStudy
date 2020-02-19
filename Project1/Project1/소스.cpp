@@ -3,63 +3,80 @@
 #include <vector>
 using namespace std;
 
-//퀵정렬 복습2
+//배합정렬
+//동빈나
+//https://blog.naver.com/ndb796/221227934987
 
-void quicksort(int *arr, int start, int end)
+int sorted[8]; //정렬배열
+
+void merge(int a[], int start, int mid, int end)
 {
-	if (start >= end)
-	{
-		return;
-	}
 
-	int key = start;
-	int i = start + 1;
-	int j = end;
-	int temp;
+	int i = start;
+	int j = mid + 1;
+	int k = start;
 
-	while (i<=j)
+	//작은 순서로 배열 삽입
+	while (i <= mid && j <= end)
 	{
-		while (arr[i] <= arr[key] && i < end)
+		if (a[i] <= a[j])
 		{
+			sorted[k] = a[i];
 			i++;
-		}
-		while (arr[j] >= arr[key] && j > start)
-		{
-			j--;
-		}
-
-		if (i < j)
-		{
-			temp = arr[j];
-			arr[j] = arr[i];
-			arr[i] = temp;
+				
 		}
 		else
 		{
-			temp = arr[j];
-			arr[j] = arr[key];
-			arr[key] = temp;
+			sorted[k] = a[j];
+			j++;
+
+		}
+		k++;
+	}
+
+	//남은 데이터 삽입
+	if (i > mid)
+	{
+		for (int t = j; t <= end; t++)
+		{
+			sorted[k] = a[t];
+			k++;
+		}
+	}
+	else
+	{
+		for (int t = i; t <= end; t++)
+		{
+			sorted[k] = a[t];
+			k++;
 		}
 	}
 
-	quicksort(arr, start, j - 1);
-	quicksort(arr, j + 1, end);
+	//정렬된 배렬을 실제 배열로 삽입
+	for (int t = start; t <= end; t++)
+	{
+		a[t] = sorted[t];
+	}
+}
 
+void mergeSort(int a[], int start, int end)
+{
+	//크기가 1보다 큰 경우
+	if (start < end)
+	{
+		int mid = (start + end) / 2;
+		mergeSort(a, start, mid);
+		mergeSort(a, mid + 1, end);
+		merge(a, start, mid, end);
+	}
 }
 int main()
 {
-	int n = 10;
-	int arr[10];
-	for (int i = 0; i < n; i++)
+	int number = 8;
+	int arr[8] = { 7,6,5,8,3,5,9,1 };
+	mergeSort(arr, 0, number - 1);
+	for (int i = 0; i < number; i++)
 	{
-		cin >> arr[i];
+		cout << arr[i] << '\n';
 	}
-
-	quicksort(arr, 0, n - 1);
-	
-	for (int i = 0; i < n; i++)
-	{
-		cout << arr[i] <<'\n';
-	}
-	
 }
