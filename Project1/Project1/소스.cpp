@@ -3,13 +3,10 @@
 #include <vector>
 using namespace std;
 
-//배합정렬
-//동빈나
-//https://blog.naver.com/ndb796/221227934987
+//배합정렬 백준문제로 수정
 
-int sorted[8]; //정렬배열
 
-void merge(int a[], int start, int mid, int end)
+void merge(int *sorted, int *a, int start, int mid, int end)
 {
 
 	int i = start;
@@ -45,7 +42,7 @@ void merge(int a[], int start, int mid, int end)
 	}
 	else
 	{
-		for (int t = i; t <= end; t++)
+		for (int t = i; t <= mid; t++) //end -> mid로 수정
 		{
 			sorted[k] = a[t];
 			k++;
@@ -59,23 +56,33 @@ void merge(int a[], int start, int mid, int end)
 	}
 }
 
-void mergeSort(int a[], int start, int end)
+void mergeSort(int *sorted, int a[], int start, int end)
 {
 	//크기가 1보다 큰 경우
 	if (start < end)
 	{
 		int mid = (start + end) / 2;
-		mergeSort(a, start, mid);
-		mergeSort(a, mid + 1, end);
-		merge(a, start, mid, end);
+		mergeSort(sorted, a, start, mid);
+		mergeSort(sorted, a, mid + 1, end);
+		merge(sorted, a, start, mid, end);
 	}
 }
 int main()
 {
-	int number = 8;
-	int arr[8] = { 7,6,5,8,3,5,9,1 };
-	mergeSort(arr, 0, number - 1);
-	for (int i = 0; i < number; i++)
+	int n;
+	cin >> n;
+
+	int *arr = new int[n];
+	int *sorted = new int[n];
+
+	for (int i = 0; i < n; i++)
+	{
+		cin >> arr[i];
+	}
+	
+	mergeSort(sorted, arr, 0, n - 1);
+
+	for (int i = 0; i < n; i++)
 	{
 		cout << arr[i] << '\n';
 	}
