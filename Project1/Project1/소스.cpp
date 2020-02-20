@@ -3,87 +3,78 @@
 #include <vector>
 using namespace std;
 
-//배합정렬 백준문제로 수정
+//병합배열 복습
 
-
-void merge(int *sorted, int *a, int start, int mid, int end)
+void merge(int *sorted, int *arr, int start, int mid, int end)
 {
-
-	int i = start;
-	int j = mid + 1;
+	int i = start, j = mid + 1;
 	int k = start;
 
-	//작은 순서로 배열 삽입
-	while (i <= mid && j <= end)
+	
+	while (i<=mid && j <= end)
 	{
-		if (a[i] <= a[j])
+		if (arr[i] <= arr[j])
 		{
-			sorted[k] = a[i];
+			sorted[k] = arr[i];
 			i++;
-				
 		}
 		else
 		{
-			sorted[k] = a[j];
+			sorted[k] = arr[j];
 			j++;
-
 		}
 		k++;
 	}
 
-	//남은 데이터 삽입
-	if (i > mid)
+	if (i <= mid)
 	{
-		for (int t = j; t <= end; t++)
+		for (int l = i; l <= mid; l++)
 		{
-			sorted[k] = a[t];
+			sorted[k] = arr[l];
 			k++;
 		}
 	}
 	else
 	{
-		for (int t = i; t <= mid; t++) //end -> mid로 수정
+		for (int l = j; l <= end; l++)
 		{
-			sorted[k] = a[t];
+			sorted[k] = arr[l];
 			k++;
 		}
+
 	}
 
-	//정렬된 배렬을 실제 배열로 삽입
-	for (int t = start; t <= end; t++)
+	for (int l = start; l <= end; l++)
 	{
-		a[t] = sorted[t];
+		arr[l] = sorted[l];
 	}
+
 }
 
-void mergeSort(int *sorted, int a[], int start, int end)
+void mergeSort(int *sorted, int *arr, int start, int end)
 {
-	//크기가 1보다 큰 경우
 	if (start < end)
 	{
 		int mid = (start + end) / 2;
-		mergeSort(sorted, a, start, mid);
-		mergeSort(sorted, a, mid + 1, end);
-		merge(sorted, a, start, mid, end);
+		mergeSort(sorted, arr, start, mid);
+		mergeSort(sorted, arr, mid + 1, end);
+		merge(sorted, arr, start, mid, end);
 	}
 }
 int main()
 {
-	int n;
-	cin >> n;
+	int arr[10];
+	int sorted[10];
 
-	int *arr = new int[n];
-	int *sorted = new int[n];
-
-	for (int i = 0; i < n; i++)
+	for (int i = 0; i < 10; i++)
 	{
 		cin >> arr[i];
 	}
-	
-	mergeSort(sorted, arr, 0, n - 1);
 
-	for (int i = 0; i < n; i++)
+	mergeSort(sorted, arr, 0, 9);
+
+	for (int i = 0; i < 10; i++)
 	{
-		cout << arr[i] << '\n';
+		cout << arr[i] << " ";
 	}
 }
