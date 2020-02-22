@@ -1,3 +1,4 @@
 ﻿  소스.cpp
+d:\onedrive - 한국폴리텍대학\백준\project1\project1\소스.cpp(13): warning C4101: 'temp' :참조되지 않은 지역 변수입니다.
   Project1.vcxproj -> D:\OneDrive - 한국폴리텍대학\백준\Project1\Debug\Project1.exe
   Project1.vcxproj -> D:\OneDrive - 한국폴리텍대학\백준\Project1\Debug\Project1.pdb (Partial PDB)

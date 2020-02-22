@@ -3,15 +3,16 @@
 #include <vector>
 using namespace std;
 
-//병합배열 복습
+//병합배열 복습2
 
-void merge(int *sorted, int *arr, int start, int mid, int end)
+void merge(int *sorted, int *arr, int start, int mid,int end)
 {
-	int i = start, j = mid + 1;
+	int i = start;
+	int j = mid + 1;
 	int k = start;
+	int temp;
 
-	
-	while (i<=mid && j <= end)
+	while (i <= mid && j <= end)
 	{
 		if (arr[i] <= arr[j])
 		{
@@ -26,7 +27,14 @@ void merge(int *sorted, int *arr, int start, int mid, int end)
 		k++;
 	}
 
-	if (i <= mid)
+	if (i > mid)
+	{
+		for (int l = j; l <= end; l++)
+		{
+			sorted[k] = arr[l];
+			k++;
+		}
+	}else
 	{
 		for (int l = i; l <= mid; l++)
 		{
@@ -34,33 +42,25 @@ void merge(int *sorted, int *arr, int start, int mid, int end)
 			k++;
 		}
 	}
-	else
-	{
-		for (int l = j; l <= end; l++)
-		{
-			sorted[k] = arr[l];
-			k++;
-		}
 
-	}
 
 	for (int l = start; l <= end; l++)
 	{
 		arr[l] = sorted[l];
 	}
-
 }
 
-void mergeSort(int *sorted, int *arr, int start, int end)
+void mergSort(int *sorted, int *arr, int start, int end)
 {
 	if (start < end)
 	{
 		int mid = (start + end) / 2;
-		mergeSort(sorted, arr, start, mid);
-		mergeSort(sorted, arr, mid + 1, end);
+		mergSort(sorted, arr, start, mid);
+		mergSort(sorted, arr, mid + 1, end);
 		merge(sorted, arr, start, mid, end);
 	}
 }
+
 int main()
 {
 	int arr[10];
@@ -71,10 +71,10 @@ int main()
 		cin >> arr[i];
 	}
 
-	mergeSort(sorted, arr, 0, 9);
+	mergSort(sorted, arr, 0, 9);
 
 	for (int i = 0; i < 10; i++)
 	{
-		cout << arr[i] << " ";
+		cout<< arr[i]<<" ";
 	}
 }
