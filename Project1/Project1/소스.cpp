@@ -4,6 +4,10 @@ using namespace std;
 
 int main()
 {
+	ios::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+
 	int n;
 	int count[10001] = { 0 };
 	int temp;
@@ -11,7 +15,8 @@ int main()
 	cin >> n;
 	for (int i = 0; i < n; i++)
 	{
-		scanf_s("%d", &temp);
+		
+		cin >> temp;
 		count[temp]++;
 	}
 
@@ -19,7 +24,7 @@ int main()
 	{
 		for (int j = 0; j < count[i]; j++)
 		{
-			printf("%d\n", i);
+			cout << i << '\n';
 		}
 	}
 	
