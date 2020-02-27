@@ -94,3 +94,7 @@ while문|3|3
   * **[2108] 통계학 (https://www.acmicpc.net/problem/2108)**
   * 문제풀이 [진행중]
 ---
+### 20.02.27(목)
+* **백준 정렬문제 풀기**
+  * **[2108] 통계학 (https://www.acmicpc.net/problem/2108)**
+  * 문제풀이 [틀림]
