@@ -2,6 +2,66 @@
 #include <algorithm>
 using namespace std;
 
+void Merge(int *sorted, int *arr, int start, int mid, int end)
+{
+
+	int i = start, j = mid+1, k = start;
+	
+	
+	while (i<=mid && j<=end)
+	{
+		if (arr[i] <= arr[j])
+		{
+			sorted[k] = arr[i];
+			i++;
+		}
+		else
+		{
+			sorted[k] = arr[j];
+			j++;
+		}
+		k++;
+	}
+	
+	if (i > mid)
+	{
+		for (int t = j; t <= end; t++)
+		{
+			sorted[k] = arr[t];
+			k++;
+		}
+	}
+	else
+	{
+		for (int t = i; t <= mid; t++)
+		{
+			sorted[k] = arr[t];
+			k++;
+		}
+		
+	}
+
+	for (int t = start; t <= end; t++)
+	{
+		arr[t] = sorted[t];
+	}
+	
+
+}
+
+void MergeSort(int *sorted, int *arr, int start, int end)
+{
+	if (start < end)
+	{
+		int mid = (start + end) / 2;
+
+		MergeSort(sorted, arr, start, mid);
+		MergeSort(sorted, arr, mid + 1, end);
+		Merge(sorted, arr, start, mid, end);
+
+	}
+	
+}
 
 int main()
 {
@@ -10,22 +70,20 @@ int main()
 	cout.tie(NULL);
 
 	int n;
-	int arr[11] = {0};
-
+	int x[100000] = {0};
+	int sorted[100000] = { 0 };
 	cin >> n;
 
-	int i = 0;
-	while (n>0)
+	for (int i = 0; i < n; i++)
 	{
-		arr[i] = n % 10;
-		n = n / 10;
-		i++;
+		cin >> x[i];
+		//cin >> y[i];
 	}
 
-	sort(arr, arr + i);
+	MergeSort(sorted, x, 0, n-1);
 
-	for (int j = i - 1; j >= 0; j--)
+	for (int i = 0; i < n; i++)
 	{
-		cout << arr[j];
+		cout << x[i] << '\n';
 	}
 }
