@@ -2,88 +2,65 @@
 #include <algorithm>
 using namespace std;
 
-void Merge(int *sorted, int *arr, int start, int mid, int end)
-{
+//힙정렬
+//동빈나 (https://blog.naver.com/ndb796/221228342808)
 
-	int i = start, j = mid+1, k = start;
-	
-	
-	while (i<=mid && j<=end)
-	{
-		if (arr[i] <= arr[j])
-		{
-			sorted[k] = arr[i];
-			i++;
-		}
-		else
-		{
-			sorted[k] = arr[j];
-			j++;
-		}
-		k++;
-	}
-	
-	if (i > mid)
-	{
-		for (int t = j; t <= end; t++)
-		{
-			sorted[k] = arr[t];
-			k++;
-		}
-	}
-	else
-	{
-		for (int t = i; t <= mid; t++)
-		{
-			sorted[k] = arr[t];
-			k++;
-		}
-		
-	}
-
-	for (int t = start; t <= end; t++)
-	{
-		arr[t] = sorted[t];
-	}
-	
-
-}
-
-void MergeSort(int *sorted, int *arr, int start, int end)
-{
-	if (start < end)
-	{
-		int mid = (start + end) / 2;
-
-		MergeSort(sorted, arr, start, mid);
-		MergeSort(sorted, arr, mid + 1, end);
-		Merge(sorted, arr, start, mid, end);
-
-	}
-	
-}
 
 int main()
 {
-	ios::sync_with_stdio(false);
-	cin.tie(NULL);
-	cout.tie(NULL);
+	int n = 9;
+	int heap[9] = { 7,6,5,8,3,5,9,1,6 };
 
-	int n;
-	int x[100000] = {0};
-	int sorted[100000] = { 0 };
-	cin >> n;
 
-	for (int i = 0; i < n; i++)
+	//최대 힙 구조
+	for (int i = 1; i < n; i++)
 	{
-		cin >> x[i];
-		//cin >> y[i];
+		int c = i;
+		do {
+			int root = (c - 1) / 2; // 특정 원소의 부모
+			if (heap[root] < heap[c])
+			{
+				int temp = heap[root];
+				heap[root] = heap[c];
+				heap[c] = temp;
+			}
+			c = root; // 원소가 부모가 됨.
+
+		} while (c != 0);
+	}
+	
+	//오른차순
+	for (int i = n - 1; i >= 0; i--)
+	{
+		int temp = heap[0];
+		heap[0] = heap[i];
+		heap[i] = temp;
+		int root = 0;
+		int c = 1;
+
+		//힙구조 만듦.
+		do {
+			c = 2 * root + 1;
+			// 자식 중 더 큰 값 찾기
+			if (heap[c] < heap[c + 1] && c < i - 1)
+			{
+				c++;
+			}
+			//루트보다 자식이 더 클 경우
+			if (heap[root] < heap[c]&& c<i)
+			{
+				temp = heap[root];
+				heap[root] = heap[c];
+				heap[c] = temp;
+			}
+			root = c;
+			
+		} while (c < i);
+		
 	}
 
-	MergeSort(sorted, x, 0, n-1);
-
 	for (int i = 0; i < n; i++)
 	{
-		cout << x[i] << '\n';
+		cout << heap[i] << " ";
 	}
 }
