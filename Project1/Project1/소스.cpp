@@ -2,64 +2,71 @@
 #include <algorithm>
 using namespace std;
 
-//힙정렬 복습2
+//힙정렬 복습3
 
 int main()
 {
-	int n = 9;
-	int heap[9] = { 7,6,5,8,3,5,9,1,6 };
+	ios::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
 
+	int n;
+	cin >> n;
+	int *arr = new int[n] {0};
 
-	//최대힙 구조 : 부모가 자식 보다 큰 구조
-	for (int i = 1; i < n; i++) {
+	for (int i = 0; i < n; i++)
+	{
+		cin >> arr[i];
+	}
 
+	//최대힙
+	for (int i = 1; i < n; i++)
+	{
 		int c = i;
+
 		do {
 			int p = (c - 1) / 2;
-			if (heap[c] > heap[p])
+			if (arr[c] > arr[p])
 			{
-				int temp = heap[p];
-				heap[p] = heap[c];
-				heap[c] = temp;
+				int temp = arr[c];
+				arr[c] = arr[p];
+				arr[p] = temp;
 			}
 			c = p;
 		} while (c != 0);
 	}
 
-	//오름차순 힙 구조
-	for (int i = n-1 ;i >= 0; i--)
+	//오름차순
+	for (int i = n - 1; i >= 0; i--)
 	{
-		//가장 큰 값 맨 뒤로 옮기기
-		int temp = heap[0];
-		heap[0] = heap[i];
-		heap[i] = temp;
+		int temp = arr[0];
+		arr[0] = arr[i];
+		arr[i] = temp;
 
-		int p = 0;
 		int c = 1;
+		int p = 0;
 
 		do {
 			c = 2 * p + 1;
-			//맨위에 있는 그룹에서 가장 큰 자식 값 선택
-			if (heap[c] < heap[c + 1] && c < i - 1)
+
+			if (arr[c] < arr[c+1] && c < i-1)
 			{
 				c++;
 			}
 
-			if (heap[p] < heap[c] && c<i)
+			if (arr[c] > arr[p]&& c<i)
 			{
-				temp = heap[p];
-				heap[p] = heap[c];
-				heap[c] = temp;
+				int temp = arr[c];
+				arr[c] = arr[p];
+				arr[p] = temp;
 			}
 			p = c;
 		} while (c < i);
-		
-		
 
 	}
 
 	for (int i = 0; i < n; i++)
 	{
-		cout << heap[i] << " ";
+		cout << arr[i] << " ";
 	}
 }
