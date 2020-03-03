@@ -2,8 +2,6 @@
 #include <algorithm>
 using namespace std;
 
-//힙정렬 복습3
-
 int main()
 {
 	ios::sync_with_stdio(false);
@@ -11,37 +9,46 @@ int main()
 	cout.tie(NULL);
 
 	int n;
+	int x[100000] = {0};
+	int y[100000] = { 0 };
 	cin >> n;
-	int *arr = new int[n] {0};
-
+	
+	//힙
 	for (int i = 0; i < n; i++)
 	{
-		cin >> arr[i];
+		cin >> x[i] >> y[i];
+
+		if (i >= 1)
+		{
+			int c = i;
+
+			do {
+				int p = (c - 1) / 2;
+				if (x[c] > x[p])
+				{
+					int temp = x[c];
+					x[c] = x[p];
+					x[p] = temp;
+					int tempy = y[c];
+					y[c] = y[p];
+					y[p] = tempy;
+				}
+				c = p;
+			} while (c != 0);
+		}
 	}
 
-	//최대힙
-	for (int i = 1; i < n; i++)
-	{
-		int c = i;
-
-		do {
-			int p = (c - 1) / 2;
-			if (arr[c] > arr[p])
-			{
-				int temp = arr[c];
-				arr[c] = arr[p];
-				arr[p] = temp;
-			}
-			c = p;
-		} while (c != 0);
-	}
+	
 
 	//오름차순
 	for (int i = n - 1; i >= 0; i--)
 	{
-		int temp = arr[0];
-		arr[0] = arr[i];
-		arr[i] = temp;
+		int temp = x[0];
+		x[0] = x[i];
+		x[i] = temp;
+		int tempy = y[0];
+		y[0] = y[i];
+		y[i] = tempy;
 
 		int c = 1;
 		int p = 0;
@@ -49,24 +56,28 @@ int main()
 		do {
 			c = 2 * p + 1;
 
-			if (arr[c] < arr[c+1] && c < i-1)
+			if (x[c] < x[c+1] && c < i-1)
 			{
 				c++;
 			}
 
-			if (arr[c] > arr[p]&& c<i)
+			if (x[c] > x[p]&& c<i)
 			{
-				int temp = arr[c];
-				arr[c] = arr[p];
-				arr[p] = temp;
+				int temp = x[c];
+				x[c] = x[p];
+				x[p] = temp;
+				int tempy = y[c];
+				y[c] = y[p];
+				y[p] = tempy;
 			}
 			p = c;
 		} while (c < i);
 
 	}
 
+	
 	for (int i = 0; i < n; i++)
-	{
-		cout << arr[i] << " ";
+	{ 
+		cout << x[i] << " " << y[i] << '\n';
 	}
 }
