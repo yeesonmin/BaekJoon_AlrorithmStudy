@@ -16,7 +16,7 @@ int main()
 	//힙
 	for (int i = 0; i < n; i++)
 	{
-		cin >> x[i] >> y[i];
+		cin  >> y[i] >> x[i];
 
 		if (i >= 1)
 		{
@@ -98,6 +98,6 @@ int main()
 	
 	for (int i = 0; i < n; i++)
 	{ 
-		cout << x[i] << " " << y[i] << '\n';
+		cout << y[i] << " " << x[i]  << '\n';
 	}
 }
