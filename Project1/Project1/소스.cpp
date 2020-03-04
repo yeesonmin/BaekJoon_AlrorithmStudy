@@ -75,6 +75,26 @@ int main()
 
 	}
 
+	//y정렬
+	for (int i = 0; i < n; i++)
+	{
+		int xtemp = i;
+		
+		while (true)
+		{
+			if (x[i] == x[i + 1] && i<n-1)
+			{
+				i++;
+			}
+			else
+			{
+				break;
+			}
+		}
+	
+		sort(y + xtemp, y + i+1);
+	
+	}
 	
 	for (int i = 0; i < n; i++)
 	{ 
