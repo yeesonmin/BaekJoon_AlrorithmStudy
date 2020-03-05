@@ -4,50 +4,32 @@
 #include <string>
 using namespace std;
 
-//sort함수 이용
-//동빈나 블로그 참조
-//https://blog.naver.com/ndb796/221228004692
-//https://blog.naver.com/ndb796/221227975229
-
 int main()
 {
 	ios::sync_with_stdio(false);
 	cin.tie(NULL);
 	cout.tie(NULL);
 
-	int n, a = 0;
-	vector<pair<int, string>>st{0};
-	string s;
+	int n;
+	vector<pair<int, string>>user;
+
+	//회원수
 	cin >> n;
+
+	//회원정보입력
+	for (int i = 0; i < n; i++)
+	{
+		int a;
+		string b;
+		cin >> a >> b;
+		user.push_back(pair<int, string>(a, b));
+	}
 	
+	//정렬
+	sort(user.begin(), user.end());
 
 	for (int i = 0; i < n; i++)
 	{
-		cin >> s;
-
-		for (int j = 0; j <=i-a; j++)
-		{
-			if (j == i-a)
-			{
-				st.push_back(pair<int, string>(s.length(), s));
-				break;
-			}
-			if (st[j].second == s)
-			{
-				a++;
-				break;
-			}
-				
-
-		}
-		
-
-	}
-	sort(st.begin(), st.end());
-
-	for (int i = 0; i < n-a; i++)
-	{
-		cout << st[i].second << '\n';
-		
+		cout << user[i].first << " " << user[i].second << '\n';
 	}
 }
