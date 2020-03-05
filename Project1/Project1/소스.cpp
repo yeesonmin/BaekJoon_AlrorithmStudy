@@ -1,7 +1,13 @@
 ﻿#include <iostream>
 #include <algorithm>
-#include <string>    //추가
+#include <vector>
+#include <string>
 using namespace std;
+
+//sort함수 이용
+//동빈나 블로그 참조
+//https://blog.naver.com/ndb796/221228004692
+//https://blog.naver.com/ndb796/221227975229
 
 int main()
 {
@@ -10,130 +16,38 @@ int main()
 	cout.tie(NULL);
 
 	int n, a = 0;
-	//문자열 클래스 사용
+	vector<pair<int, string>>st{0};
 	string s;
-	string *st;
-
 	cin >> n;
-	st = new string[n];
+	
 
 	for (int i = 0; i < n; i++)
 	{
-		
 		cin >> s;
-		for (int j = 0; j <= i; j++)
+
+		for (int j = 0; j <=i-a; j++)
 		{
-			if (st[j] == s)
+			if (j == i-a)
+			{
+				st.push_back(pair<int, string>(s.length(), s));
+				break;
+			}
+			if (st[j].second == s)
 			{
 				a++;
 				break;
+			}
+				
 
-			}
-			if(j==i)
-			{
-				st[i-a] = s;
-			}
 		}
 		
 
-		//힙정렬
-		if (i >= 1)
-		{
-			int c = i - a;
-			do
-			{
-				int p = (c - 1) / 2;
-
-				if (st[c].length() > st[p].length())
-				{
-					string temp = st[c];
-					st[c] = st[p];
-					st[p] = temp;
-				}
-				c = p;
-			} while (c != 0);
-		}
 	}
-	
-	n = n - a;
-	if (n > 1)
+	sort(st.begin(), st.end());
+
+	for (int i = 0; i < n-a; i++)
 	{
-		//힙 오른차순 정렬
-		for (int i = n - 1; i >= 0; i--)
-		{
-			string temp = st[0];
-			st[0] = st[i];
-			st[i] = temp;
-
-			int c = 1, p = 0;
-			do {
-				c = 2 * p + 1;
-				if (st[c].length() < st[c + 1].length() && c < i - 1)
-				{
-					c++;
-				}
-
-				if (st[c].length() > st[p].length() && c < i)
-				{
-					string temp = st[c];
-					st[c] = st[p];
-					st[p] = temp;
-				}
-				p = c;
-
-			} while (c < i);
-
-
-		}
-
-		//사전순으로 정렬
-		for (int i = 0; i < n; i++)
-		{
-			int cnt = 0, len = 0, tempi = i;
-
-			//문자열 길이가 같은 것 고르기.
-			while (true)
-			{
-
-				if (st[i].length() == st[i + 1].length() && i < n - 1)
-				{
-					len = st[i].length();
-					cnt++;
-					i++;
-				}
-				else
-				{
-					break;
-				}
-			}
-
-			//사전순
-			//왼쪽 글자 기준으로 정렬
-			if (len > 0)
-			{
-				for (int j = len - 1; j >= 0; j--)
-				{
-					for (int k = tempi; k < i; k++)
-					{
-						for (int t = tempi; t < i - k; t++)
-						{
-							if ((int)st[t][j] > (int)st[t + 1][j])
-							{
-								string temp = st[t];
-								st[t] = st[t + 1];
-								st[t + 1] = temp;
-							}
-						}
-					}
-				}
-			}
-
-		}
-	}
-	
-
-	for (int i = 0; i < n; i++)
-	{
-		cout<< st[i]<<'\n';
+		cout << st[i].second << '\n';
+		
 	}
 }
