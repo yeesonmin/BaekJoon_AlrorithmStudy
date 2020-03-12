@@ -1,0 +1,11 @@
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.24.28314\include
+
+ 
+
+경로에서 bits 폴더를 생성한다. ( 해당 경로는 Visual studio가 설치된 기본적인 곳으로 없다면 본인이 찾아야 한다.)
+
+ 
+
+ 
+
+그리고 생성한 bits 폴더 안에 다운 받은 stdc++.h 헤더 파일을 넣어주면 된다.

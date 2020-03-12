@@ -1,47 +1,27 @@
-﻿#include <iostream>
-#include <algorithm>
-#include <vector>
-#include <string>
+﻿#include <bits/stdc++.h>
+
 using namespace std;
 
-bool compare(pair<int, pair<int, string>> a, pair<int, pair<int, string>> b)
+//백트래킹 예제 연습
+//참조 : https://blog.encrypted.gg/732
+
+int n, m;
+void Backtracking(int k, int *arr, bool *isused)
 {
-	if (a.first == b.first)
-	{
-		return a.second.first < b.second.first;
-	}
-	else
-	{
-		return a.first < b.first;
-	}
+	
+	
 }
-int main()
+int main(void)
 {
 	ios::sync_with_stdio(false);
 	cin.tie(NULL);
 	cout.tie(NULL);
-
-	int n, cnt = 0;
-	vector<pair<int,pair<int, string>>>user;
-
-	//회원수
-	cin >> n;
-
-	//회원정보입력
-	for (int i = 0; i < n; i++)
-	{
-		int a;
-		string b;
-		cin >> a >> b;
-		cnt++;
-		user.push_back(pair<int, pair<int, string>>(a,make_pair(cnt,b)));
-	}
 	
-	//정렬
-	sort(user.begin(), user.end(), compare);
+	cin >> n >> m;
+	bool isused[n] = { false }; //각 수 사용 여부
+	int k = 0, arr[m] = { 0 };//K: 리스트에 있는 수의 갯수, arr : 리스트
 
-	for (int i = 0; i < n; i++)
-	{
-		cout << user[i].first << " " << user[i].second.second << '\n';
-	}
+	
+
+
 }
