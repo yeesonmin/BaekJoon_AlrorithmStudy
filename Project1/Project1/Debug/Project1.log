@@ -1,7 +1,2 @@
 ﻿  소스.cpp
-c:\users\yeeso\documents\github\백준\project1\project1\소스.cpp(26): error C2131: 식이 상수로 계산되지 않았습니다.
-  c:\users\yeeso\documents\github\백준\project1\project1\소스.cpp(26): note: 비상수 인수 또는 비상수 기호를 참조하여 실패했습니다.
-  c:\users\yeeso\documents\github\백준\project1\project1\소스.cpp(26): note: 'm' 사용량 참조
-c:\users\yeeso\documents\github\백준\project1\project1\소스.cpp(27): error C2131: 식이 상수로 계산되지 않았습니다.
-  c:\users\yeeso\documents\github\백준\project1\project1\소스.cpp(27): note: 비상수 인수 또는 비상수 기호를 참조하여 실패했습니다.
-  c:\users\yeeso\documents\github\백준\project1\project1\소스.cpp(27): note: 'n' 사용량 참조
+  Project1.vcxproj -> C:\Users\yeeso\Documents\GitHub\백준\Project1\Debug\Project1.exe
