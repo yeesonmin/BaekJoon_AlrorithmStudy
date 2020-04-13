@@ -15,10 +15,7 @@ void backtraking(int *arr, int k)
 	}
 
 	int st = 0;
-	if (k != 0)
-	{
-		st = arr[k - 1];
-	}
+
 	for (int i = st; i < n; i++)
 	{
 		
