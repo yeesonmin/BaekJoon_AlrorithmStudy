@@ -2,7 +2,7 @@
 using namespace std;
 
 int n, m;
-void backtraking(int *arr, bool *cNumber, int k)
+void backtraking(int *arr, int k)
 {
 	if (k == m)
 	{
@@ -14,15 +14,17 @@ void backtraking(int *arr, bool *cNumber, int k)
 		return;
 	}
 
-	for (int i = 0; i < n; i++)
+	int st = 0;
+	if (k != 0)
 	{
-		if (!cNumber[i])
-		{
+		st = arr[k - 1];
+	}
+	for (int i = st; i < n; i++)
+	{
+		
 			arr[k] = i + 1;
-			cNumber[i] = 1;
-			backtraking(arr, cNumber, k + 1);
-			cNumber[i] = 0;
-		}
+			backtraking(arr, k + 1);
+		
 	}
 
 
@@ -36,7 +38,6 @@ int main()
 	cin >> n >> m;
 
 	int *arr = new int[m]{ 0 };
-	bool *cNumber = new bool[n]{ 0 };
-	backtraking(arr, cNumber, 0);
+	backtraking(arr, 0);
 
 }
