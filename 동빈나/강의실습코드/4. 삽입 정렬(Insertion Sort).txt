@@ -1,0 +1,40 @@
+#include<stdio.h>
+#include <time.h>
+
+/// <summary>
+/// 삽입정렬
+/// </summary>
+void sort(int* arr)
+{
+	int temp = 0, j;
+	for (int i = 0; i < 10; i++)
+	{
+		j = i;
+
+		while(j > 0 && *(arr + j) < *(arr + j - 1))
+		{
+			
+			temp = *(arr + j - 1);
+			*(arr + j-1) = *(arr + j);
+			*(arr + j) = temp;
+			j--;
+		}
+	}
+}
+
+void main()
+{
+	clock_t start = clock(); // 시작 시간 저장
+	int arr[10] = { 1, 10, 5, 8, 7, 6, 4, 3, 2, 9 };
+	int* parr = arr;
+
+	sort(parr);
+
+	for (int i = 0; i < 10; i++)
+	{
+		printf("%d\n", *(parr + i));
+	}
+	clock_t end = clock(); // 코드가 끝난 시간 저장
+	printf("\nTime: %lf\n", (double)(end - start) / CLOCKS_PER_SEC);
+
+}
