@@ -1,0 +1,54 @@
+#include<stdio.h>
+
+
+/// <summary>
+/// 큰 수의 법칙
+/// </summary>
+
+void main()
+{
+	
+	int N, M, K;
+	int arr[1000] = { 0 };
+	int max = 0, max2 = 0;
+	int sum = 0;
+
+	scanf_s("%d %d %d", &N, &M, &K);
+	for (int i = 0; i < N; i++)
+	{
+		scanf_s("%d", &arr[i]);
+		if (max <= arr[i])
+		{
+			max2 = max;
+			max = arr[i];
+		}
+		
+	}
+
+	if (max == max2)
+	{
+		printf("%d", max * M);
+	}
+	else
+	{
+		for (int i = 0; i < M; i++)
+		{
+			for (int j = 0; j < K; j++)
+			{
+				sum += max;
+				i++;
+			}
+			sum += max2;
+			
+		}
+		printf("%d", sum);
+	}
+
+
+	
+
+
+
+	
+
+}
