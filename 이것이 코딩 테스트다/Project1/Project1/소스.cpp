@@ -1,36 +1,57 @@
-#include<stdio.h>
+#include<iostream>
+#include<vector>
 
-
+using namespace std;
 /// <summary>
-/// 1이 될 때까지
+/// 큰 수의 법칙
 /// </summary>
 
 void main()
 {
-	
-	int n = 0, k = 0;
-	int cnt = 0;
+	vector<int> arr;
+	int N, M, K;
+	int max = 0, max2 = 0;
+	int sum = 0;
 
-	scanf_s("%d %d", &n, &k);
+	cin >> N >> M >> K;
 
-	while (1)
+	for (int i = 0; i < N; i++)
 	{
-		if (n % k > 0)
+		int x;
+		cin >> x;
+		arr.push_back(x);
+		if (max <= arr[i])
 		{
-			n--;
-			cnt++;
-		}
-		else
-		{
-			n /= k;
-			cnt++;
-		}
-
-		if (n == 1)
-		{
-			printf("%d", cnt);
-			break;
+			max2 = max;
+			max = arr[i];
 		}
 
 	}
+
+	if (max == max2)
+	{
+		cout << max * M;
+	}
+	else
+	{
+		for (int i = 0; i < M; i++)
+		{
+			for (int j = 0; j < K; j++)
+			{
+				sum += max;
+				i++;
+			}
+			sum += max2;
+
+		}
+		cout << sum;
+	}
+
+
+
+
+
+
+
+
 }

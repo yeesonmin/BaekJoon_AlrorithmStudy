@@ -1,0 +1,43 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>
+using namespace std;
+
+
+
+/// <summary>
+/// 모험가 길드
+/// </summary>
+
+void main()
+{
+	vector<int> arr;
+
+	int n = 0;
+	int cnt = 0, result = 0;
+	int temp = 0;
+
+	cin >> n;
+
+	for (int i = 0; i < n; i++)
+	{
+		int x;
+		cin >> x;
+		arr.push_back(x);
+	}
+
+
+	sort(arr.begin(), arr.end());
+
+	for (int i = 0; i < n; i++)
+	{
+		cnt++;
+		if (cnt >= arr[i])
+		{
+			result++;
+			cnt = 0;
+		}
+	}
+
+	cout << result << '\n';
+}
