@@ -1,0 +1,26 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+void main()
+{
+	string s;
+	int cnt1 = 0, cnt2 = 0;
+	cin >> s;
+
+	for (int i = 0; i < s.length() - 1; i++)
+	{
+		if ((s[i] ^ s[i + 1]) == 1 && s[i] == '0')//문자가 변하고 0이면
+		{
+			cnt1++;
+		}
+		if ((s[i] ^ s[i + 1]) == 1 && s[i] == '1')//문자가 변하고 1이면
+		{
+			cnt2++;
+		}
+	}
+
+
+	cout << (cnt1 >= cnt2 ? cnt2 : cnt1);
+}

@@ -1,57 +1,40 @@
-#include<iostream>
-#include<vector>
+#include <iostream>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
-/// <summary>
-/// 큰 수의 법칙
-/// </summary>
 
 void main()
 {
+	int n = 0;
 	vector<int> arr;
-	int N, M, K;
-	int max = 0, max2 = 0;
-	int sum = 0;
+	int result = 1;
 
-	cin >> N >> M >> K;
-
-	for (int i = 0; i < N; i++)
+	cin >> n;
+	for (int i = 0; i < n; i++)
 	{
-		int x;
-		cin >> x;
-		arr.push_back(x);
-		if (max <= arr[i])
+		int a = 0;
+		cin >> a;
+		arr.push_back(a);
+	}
+
+	sort(arr.begin(), arr.end());
+
+	//핵심
+	for (int i = 0; i < n; i++)
+	{
+		if (result >= arr[i])
 		{
-			max2 = max;
-			max = arr[i];
+			result += arr[i];
+		}
+		else
+		{
+			break;
 		}
 
+
 	}
 
-	if (max == max2)
-	{
-		cout << max * M;
-	}
-	else
-	{
-		for (int i = 0; i < M; i++)
-		{
-			for (int j = 0; j < K; j++)
-			{
-				sum += max;
-				i++;
-			}
-			sum += max2;
-
-		}
-		cout << sum;
-	}
-
-
-
-
-
-
-
+	cout << result;
 
 }
