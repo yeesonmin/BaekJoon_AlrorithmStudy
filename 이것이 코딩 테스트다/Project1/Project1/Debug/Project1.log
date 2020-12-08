@@ -1,3 +1,10 @@
 ﻿  소스.cpp
-C:\Users\yeeso\Desktop\git\Algorithm\이것이 코딩 테스트다\Project1\Project1\소스.cpp(8,1): warning C4326: 'main'의 반환 형식이 'int'이어야 하는데 'void'입니다.
+C:\Users\yeeso\Desktop\git\Algorithm\이것이 코딩 테스트다\Project1\Project1\소스.cpp(12,23): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\yeeso\Desktop\git\Algorithm\이것이 코딩 테스트다\Project1\Project1\소스.cpp(14,47): warning C4244: '-=': '__int64'에서 '_Ty'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              _Ty=int
+          ]
+C:\Users\yeeso\Desktop\git\Algorithm\이것이 코딩 테스트다\Project1\Project1\소스.cpp(21,23): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\yeeso\Desktop\git\Algorithm\이것이 코딩 테스트다\Project1\Project1\소스.cpp(42,1): warning C4326: 'main'의 반환 형식이 'int'이어야 하는데 'void'입니다.
   Project1.vcxproj -> C:\Users\yeeso\Desktop\git\Algorithm\이것이 코딩 테스트다\Project1\Debug\Project1.exe

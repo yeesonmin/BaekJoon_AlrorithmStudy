@@ -1,40 +1,46 @@
-#include <iostream>
+#include <string>
 #include <vector>
-#include <algorithm>
 
 using namespace std;
 
+int solution(vector<int> food_times, long long k) {
+    int answer = 0;
+
+    answer = k % food_times.size();//이상적인 위치
+
+    //무지가 음식을 먹음
+    for (int i = 0; i < food_times.size(); i++)
+    {
+        food_times[i] -= k / food_times.size();
+    }
+    for (int i = 0; i < food_times.size() % k; i++)
+    {
+        food_times[i]--;
+    }
+
+    for (int i = 0; i < food_times.size(); i++)
+    {
+        if (food_times[answer] > 0)
+        {
+            return answer + 1;
+        }
+        else
+        {
+            answer++;
+            if (answer == food_times.size())
+            {
+                answer = 0;
+            }
+        }
+    }
+
+    return -1;
+
+}
+
 void main()
 {
-	int n = 0;
-	vector<int> arr;
-	int result = 1;
-
-	cin >> n;
-	for (int i = 0; i < n; i++)
-	{
-		int a = 0;
-		cin >> a;
-		arr.push_back(a);
-	}
-
-	sort(arr.begin(), arr.end());
-
-	//핵심
-	for (int i = 0; i < n; i++)
-	{
-		if (result >= arr[i])
-		{
-			result += arr[i];
-		}
-		else
-		{
-			break;
-		}
-
-
-	}
-
-	cout << result;
-
+    vector<int> food_times = { 3,1,2 };
+    long long k = 5;
+    solution(food_times, k);
 }
