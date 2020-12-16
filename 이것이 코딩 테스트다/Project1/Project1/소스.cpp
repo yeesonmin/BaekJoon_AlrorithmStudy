@@ -1,77 +1,25 @@
-#include <string>
-#include <vector>
-
+#include <iostream>
 using namespace std;
 
-int solution(vector<int> food_times, long long k) {
-    int answer = 0;
-    int remain = k % food_times.size();
-    int q = k / food_times.size();
 
-    answer = remain-1; //예상위치
-
-    long long sum = 0;
-    for (int i = 0; i < food_times.size(); i++) {
-        sum += food_times[i];
-    }
-
-    if (sum <= k){
-        return -1;
-    }
-    
-    int remainch = remain;
-    for (int i = 0; i < food_times.size(); i++) {
-        if (remainch > 0) {
-            if (food_times[i] - (q + 1) >= 0) {
-                food_times[i] -= (q + 1);
-                remainch--;
-            }
-            else
-            {
-                food_times[i] = 0;
-
-            }
-            
-        }
-
-    }
-
-
-    for (int i = 0; i < food_times.size(); i++){
-        if (answer <= remain-1){
-            if (food_times[answer] - (q + 1) < 0) {
-                answer++;
-                if (answer == food_times.size())
-                {
-                    answer = 0;
-                }
-            }
-            else
-            {
-                return answer+1;
-            }
-        }
-        else
-        {
-            if (food_times[answer] - q < 0) {
-                answer++;
-                if (answer == food_times.size())
-                {
-                    answer = 0;
-                }
-            }
-            else
-            {
-                return answer+1;
-            }
-        }
-        
-    }
-}
 
 void main()
 {
-    vector<int> food_times = { 3,1,2 };
-    long long k = 5;
-    solution(food_times, k);
+	string input;
+	int x = 0, y = 0;
+	int cnt = 0;
+
+	int bx[] = { -1, 1, 2, 2, 1, -1, -2, -2 };
+	int by[] = { -2,-2, -1, 1, 2, 2, 1, -1 };
+
+	cin >> input;
+	x = input[0] - 'a' + 1;
+	y = input[1] - '0';
+
+	for (int i = 0; i < 8; i++)
+	{
+		if ((x + bx[i] > 0 && x + bx[i] < 9) && (y + by[i] > 0 && y + by[i] < 9))
+			cnt++;
+	}
+	cout << cnt;
 }
