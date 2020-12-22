@@ -1,57 +1,64 @@
 #include <iostream>
 #include <vector>
 #include <queue>
-
 using namespace std;
 
-bool visited[9];
-vector<int> graph[9];
+int dx[4] = { 0, 0, -1, 1 }, dy[4] = {-1,1,0,0};
+vector<pair <int, int>> node[1000000];
+bool visited[1000000] = { false };
 
-void dfs(int x) {
-    // 현재 노드를 방문 처리
-    visited[x] = true;
-    cout << x << ' ';
-    // 현재 노드와 연결된 다른 노드를 재귀적으로 방문
-    for (int i = 0; i < graph[x].size(); i++) {
-        int y = graph[x][i];
-        if (!visited[y]) dfs(y);
-    }
-}
 
-int main(void) {
-    // 노드 1에 연결된 노드 정보 저장 
-    graph[1].push_back(2);
-    graph[1].push_back(3);
-    graph[1].push_back(8);
+void main()
+{
+	bool map[1000][1000];
+	int n, m;
+	int cnt = 0, num = 0;
 
-    // 노드 2에 연결된 노드 정보 저장 
-    graph[2].push_back(1);
-    graph[2].push_back(7);
+	cin >> n >> m;
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < m; j++) {
+			cin >> map[i][j];
+			if (map[i][j] == 0) {
+				node[num].push_back({ i,j });
+				num++;
+			}
+		}
+	}
 
-    // 노드 3에 연결된 노드 정보 저장 
-    graph[3].push_back(1);
-    graph[3].push_back(4);
-    graph[3].push_back(5);
+	for (int i = 0; i < num; i++) {
+		for (int j = 0; j < num; j++) {
+			if (i == j) {
+				break;
+			}
 
-    // 노드 4에 연결된 노드 정보 저장 
-    graph[4].push_back(3);
-    graph[4].push_back(5);
+			for (int k = 0; k < 4; k++) {
+				if (node[i][0].first + dx[k] == node[j][0].first && node[i][0].second + dx[k] == node[j][0].second) {
+					node[i].push_back({ j , 0});
+				}
+			}
+		}
+	}
 
-    // 노드 5에 연결된 노드 정보 저장 
-    graph[5].push_back(3);
-    graph[5].push_back(4);
+	queue<int> q;
+	q.push(0);
+	visited[0] = true;
 
-    // 노드 6에 연결된 노드 정보 저장 
-    graph[6].push_back(7);
+	for (int i = 0; i < num; i++)
+	{
 
-    // 노드 7에 연결된 노드 정보 저장 
-    graph[7].push_back(2);
-    graph[7].push_back(6);
-    graph[7].push_back(8);
-
-    // 노드 8에 연결된 노드 정보 저장 
-    graph[8].push_back(1);
-    graph[8].push_back(7);
-
-    dfs(1);
+	}
+	while (!q.empty())
+	{
+		int x = q.front();
+		q.pop();
+		for (int i = 1; i < node[x].size(); i++) {
+			int y = node[x][i].first;
+			if (!visited[y]) {
+				q.push(y);
+				visited[y] = true;
+			}
+		}
+	}
+	cnt++;
 }
