@@ -1,53 +1,30 @@
 #include <iostream>
-#include <queue>
+#include <algorithm>
 using namespace std;
 
+//정렬 라이브러리 키(Key) 기준 정렬
+class Fruit {
+public:
+    string name;
+    int score;
+    Fruit(string name, int score) {
+        this->name = name;
+        this->score = score;
+    }
 
-int dx[4] = {0, 0, -1, 1};
-int dy[4] = {-1, 1, 0, 0};
+    bool operator <(Fruit& other) {
+        return this->score < other.score;
+    }
+};
 
 void main()
 {
-	int map[200][200];
-	int n = 0, m = 0;
+    int n = 3;
+    Fruit fruits[] = {
+        Fruit("바나나", 2),
+        Fruit("사과", 5),
+        Fruit("당근", 3)
+    };
 
-	cin >> n >> m;
-	
-	for (int i = 0; i < n; i++) {
-		for (int j = 0; j < m; j++) {
-			scanf_s("%1d", &map[i][j]);
-		}
-	}
-
-	queue<pair <int, int>> q;
-	q.push({ 0, 0 });
-	int cnt = 1;
-	int x, y;
-
-	bool sizeChange = true;
-	while (!q.empty())
-	{
-		if (sizeChange) {
-			cnt++;
-			sizeChange = false;
-		}
-		
-		for (int i = 0; i < 4; i++) {
-			x = q.front().second + dx[i];
-			y = q.front().first + dy[i];
-			if ((x >= 0 && x < m) && (y >= 0 && y < n))
-			{
-				if (map[y][x] == 1) {
-					q.push({ y , x });
-					sizeChange = true;
-					map[y][x] = cnt;
-				}
-			}
-			
-		}
-		q.pop();
-	}
-
-	cout << map[n - 1][m - 1];
 
 }

@@ -1,0 +1,52 @@
+#include <iostream>
+
+using namespace std;
+
+//퀵정렬
+void quick(int arr[], int start, int end) {
+
+	if (start >= end)
+		return;
+
+	int p = start;
+	int left = start+1, right = end;
+
+	while (left <= right)
+	{
+		while (left <= end && arr[left] <= arr[p])
+		{
+			left++;
+		}
+		while (right > start && arr[right] >= arr[p])
+		{
+			right--;
+		}
+		
+
+		if (left < right) {
+			swap(arr[left], arr[right]);
+		}
+		else
+		{
+			swap(arr[p], arr[right]);
+		}
+	}
+	
+
+	quick(arr, start, right - 1);
+	quick(arr, right + 1, end);
+
+}
+
+void main()
+{
+	int arr[] = { 7,5,9,0,3,1,6,2,4,8 };
+	
+
+	quick(arr, 0, sizeof(arr) / 4 - 1);
+
+	for(int i = 0; i < sizeof(arr)/4; i++) {
+		cout << arr[i] << ' ';
+	}
+	
+}
