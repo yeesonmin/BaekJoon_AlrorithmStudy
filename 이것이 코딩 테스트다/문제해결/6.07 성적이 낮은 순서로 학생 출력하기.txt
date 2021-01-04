@@ -1,0 +1,54 @@
+#include <iostream>
+#include <algorithm>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+class Students
+{
+public:
+	int score;
+	string name;
+
+	Students(string name, int score);
+	~Students();
+
+	bool operator < (Students &a) {
+		return this->score < a.score;
+	}
+
+private:
+
+};
+
+Students::Students(string name, int score)
+{
+	this->name = name;
+	this->score = score;
+}
+
+Students::~Students()
+{
+}
+
+vector<Students> student;
+
+void main() {
+	int n;
+	cin >> n;
+	
+	for (int i = 0; i < n; i++) {
+		int score;
+		string name;
+		cin >> name >> score;
+		student.push_back(Students(name, score));
+	}
+
+	sort(student.begin(), student.end());
+
+	for (int i = 0; i < n; i++) {
+		cout << student[i].name << ' ';
+	}
+
+}

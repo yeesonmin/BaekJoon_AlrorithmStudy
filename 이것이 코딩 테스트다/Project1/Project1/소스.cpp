@@ -1,30 +1,44 @@
 #include <iostream>
 #include <algorithm>
+#include <vector>
 using namespace std;
 
-//정렬 라이브러리 키(Key) 기준 정렬
-class Fruit {
-public:
-    string name;
-    int score;
-    Fruit(string name, int score) {
-        this->name = name;
-        this->score = score;
-    }
+vector<int> a;
+vector<int> b;
+void main() {
+	int n, k;
+	cin >> n >> k;
 
-    bool operator <(Fruit& other) {
-        return this->score < other.score;
-    }
-};
+	for (int i = 0; i < n; i++) {
+		int x;
+		cin >> x;
+		a.push_back(x);
+	}
 
-void main()
-{
-    int n = 3;
-    Fruit fruits[] = {
-        Fruit("바나나", 2),
-        Fruit("사과", 5),
-        Fruit("당근", 3)
-    };
+	for (int i = 0; i < n; i++) {
+		int x;
+		cin >> x;
+		b.push_back(x);
+	}
+
+	sort(a.begin(), a.end());
+	sort(b.begin(), b.end());
 
 
+	for (int i = 0; i < k; i++) {
+		if (a[i] < b[n - i - 1]) {
+			swap(a[i], b[n - i - 1]);
+		}
+		else
+		{
+			break;
+		}
+	}
+
+	long long sum = 0;
+	for (int i = 0; i < n; i++) {
+		sum += a[i];
+	}
+
+	cout << sum;
 }
