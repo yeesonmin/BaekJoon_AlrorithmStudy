@@ -1,44 +1,48 @@
 #include <iostream>
-#include <algorithm>
 #include <vector>
 using namespace std;
 
-vector<int> a;
-vector<int> b;
-void main() {
-	int n, k;
-	cin >> n >> k;
-
-	for (int i = 0; i < n; i++) {
-		int x;
-		cin >> x;
-		a.push_back(x);
+//이진 탐색 알고리즘
+int binarySearch(vector<int> arr, int target, int start, int end) {
+	if (start > end) {
+		return -1;
 	}
 
-	for (int i = 0; i < n; i++) {
-		int x;
-		cin >> x;
-		b.push_back(x);
+	int mid = (start + end) / 2;
+
+	if (arr[mid] == target) {
+		return mid;
 	}
-
-	sort(a.begin(), a.end());
-	sort(b.begin(), b.end());
-
-
-	for (int i = 0; i < k; i++) {
-		if (a[i] < b[n - i - 1]) {
-			swap(a[i], b[n - i - 1]);
+	else
+	{
+		if (arr[mid] > target) {
+			return binarySearch(arr, target, start, mid - 1);
 		}
 		else
 		{
-			break;
+			return binarySearch(arr, target, mid + 1, end);
 		}
 	}
+}
 
-	long long sum = 0;
-	for (int i = 0; i < n; i++) {
-		sum += a[i];
+vector<int> arr;
+void main() {
+	int n, m;
+	cin >> n >> m;
+
+	for (int i = 0; i < n; i++)
+	{
+		int x = 0;
+		cin >> x;
+		arr.push_back(x);
 	}
-
-	cout << sum;
+	int result = binarySearch(arr, m, 0, arr.size());
+	if (result == -1) {
+		cout << "노 답";
+	}
+	else
+	{
+		cout << result + 1;
+	}
+	
 }
