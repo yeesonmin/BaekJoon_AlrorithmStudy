@@ -1,48 +1,53 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
-//이진 탐색 알고리즘
-int binarySearch(vector<int> arr, int target, int start, int end) {
+int Cut(vector<int> a, int start, int end, int m) {
 	if (start > end) {
 		return -1;
 	}
 
-	int mid = (start + end) / 2;
+	int midcut = (start + end) / 2;
+	int sum = 0;
+	for (int i = 0; i < a.size(); i++)
+	{
+		if (a[i] - midcut > 0) {
+			sum += a[i] - midcut;
+		}
+	}
 
-	if (arr[mid] == target) {
-		return mid;
+	if (m == sum) {
+		return midcut;
+	}
+	else if(m < sum) {
+		return Cut(a, midcut + 1, end, m);
 	}
 	else
 	{
-		if (arr[mid] > target) {
-			return binarySearch(arr, target, start, mid - 1);
-		}
-		else
-		{
-			return binarySearch(arr, target, mid + 1, end);
-		}
+		return Cut(a, start, midcut - 1, m);
 	}
+	
+	
 }
 
-vector<int> arr;
 void main() {
 	int n, m;
+
+	vector<int> a;
+
 	cin >> n >> m;
 
 	for (int i = 0; i < n; i++)
 	{
-		int x = 0;
+		int x;
 		cin >> x;
-		arr.push_back(x);
+		a.push_back(x);
 	}
-	int result = binarySearch(arr, m, 0, arr.size());
-	if (result == -1) {
-		cout << "노 답";
-	}
-	else
-	{
-		cout << result + 1;
-	}
+
+	sort(a.begin(), a.end());
+
+	cout << Cut(a, 0, a[n - 1], m);
+	
 	
 }
