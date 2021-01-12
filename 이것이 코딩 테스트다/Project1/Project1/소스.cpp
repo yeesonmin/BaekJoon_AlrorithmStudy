@@ -1,53 +1,39 @@
 #include <iostream>
-#include <vector>
-#include <algorithm>
+
+
 using namespace std;
+int mincnt = 30000;
 
-int Cut(vector<int> a, int start, int end, int m) {
-	if (start > end) {
-		return -1;
-	}
-
-	int midcut = (start + end) / 2;
-	int sum = 0;
-	for (int i = 0; i < a.size(); i++)
-	{
-		if (a[i] - midcut > 0) {
-			sum += a[i] - midcut;
+int oneMake(int x, int cnt) {
+	if (x == 1) {
+		if (mincnt > cnt) {
+			mincnt = cnt;
+			return mincnt;
+		}
+		else
+		{
+			return mincnt;
 		}
 	}
 
-	if (m == sum) {
-		return midcut;
+	if (x % 5 == 0) {
+		oneMake(x / 5, cnt+1);
 	}
-	else if(m < sum) {
-		return Cut(a, midcut + 1, end, m);
+	if (x % 3 == 0) {
+		oneMake(x / 3, cnt + 1);
 	}
-	else
-	{
-		return Cut(a, start, midcut - 1, m);
+	if (x % 2 == 0) {
+		oneMake(x / 2, cnt + 1);
 	}
 	
+	oneMake(x - 1, cnt + 1);
 	
 }
-
 void main() {
-	int n, m;
+	int x;
+	cin >> x;
 
-	vector<int> a;
+	int cnt = 0;
 
-	cin >> n >> m;
-
-	for (int i = 0; i < n; i++)
-	{
-		int x;
-		cin >> x;
-		a.push_back(x);
-	}
-
-	sort(a.begin(), a.end());
-
-	cout << Cut(a, 0, a[n - 1], m);
-	
-	
+	cout << oneMake(x, cnt);
 }
