@@ -1,39 +1,33 @@
 #include <iostream>
 
-
 using namespace std;
-int mincnt = 30000;
 
-int oneMake(int x, int cnt) {
-	if (x == 1) {
-		if (mincnt > cnt) {
-			mincnt = cnt;
-			return mincnt;
-		}
-		else
-		{
-			return mincnt;
-		}
-	}
 
-	if (x % 5 == 0) {
-		oneMake(x / 5, cnt+1);
-	}
-	if (x % 3 == 0) {
-		oneMake(x / 3, cnt + 1);
-	}
-	if (x % 2 == 0) {
-		oneMake(x / 2, cnt + 1);
-	}
-	
-	oneMake(x - 1, cnt + 1);
-	
-}
 void main() {
-	int x;
-	cin >> x;
+	int n, m;
+	cin >> n >> m;
 
-	int cnt = 0;
+	int arr[101] = { 0 };
+	for (int i =  1; i < n + 1; i++)
+	{
+		cin >> arr[i];
+	}
 
-	cout << oneMake(x, cnt);
+	int d[10001];
+	fill_n(d, 10000, 10001);
+	for (int i = 1; i <= n; i++) {
+		for(int j = )
+	}
+
+	
+
+	if (d[m] == 10001)
+	{
+		cout << -1;
+	}
+	else
+	{
+		cout << d[m];
+	}
+	
 }
