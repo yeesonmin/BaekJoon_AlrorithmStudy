@@ -1,3 +1,18 @@
 ﻿  소스.cpp
-C:\Users\yeeso\Desktop\git\Algorithm\이것이 코딩 테스트다\Project1\Project1\소스.cpp(6,13): warning C4326: 'main'의 반환 형식이 'int'이어야 하는데 'void'입니다.
+C:\Users\yeeso\Desktop\git\Algorithm\이것이 코딩 테스트다\Project1\Project1\소스.cpp(22,15): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yeeso\Desktop\git\Algorithm\이것이 코딩 테스트다\Project1\Project1\소스.cpp(41,20): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\yeeso\Desktop\git\Algorithm\이것이 코딩 테스트다\Project1\Project1\소스.cpp(50,21): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\yeeso\Desktop\git\Algorithm\이것이 코딩 테스트다\Project1\Project1\소스.cpp(61,13): warning C4326: 'main'의 반환 형식이 'int'이어야 하는데 'void'입니다.
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29333\include\xutility(4880,27): warning C4244: '=': 'const _Ty'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              _Ty=double
+          ]
+C:\Users\yeeso\Desktop\git\Algorithm\이것이 코딩 테스트다\Project1\Project1\소스.cpp(76): message : 컴파일되는 함수 템플릿 인스턴스화 '_OutIt *std::fill_n<int*,int,double>(_OutIt,const _Diff,const _Ty &)'에 대한 참조를 확인하세요.
+          with
+          [
+              _OutIt=int *,
+              _Diff=int,
+              _Ty=double
+          ]
   Project1.vcxproj -> C:\Users\yeeso\Desktop\git\Algorithm\이것이 코딩 테스트다\Project1\Debug\Project1.exe
