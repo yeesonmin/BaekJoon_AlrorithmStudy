@@ -1,0 +1,64 @@
+#include <iostream>
+#include <vector>
+#include <queue>
+#define INF 1e9
+using namespace std;
+
+//개선된 다익스트라 복습
+
+// n : 노드, m : 노선 개수, start : 시작 노드
+int n, m, start;
+//그래프
+vector<pair<int, int>> graph[100001];
+//테이블
+int d[100001];
+
+void dijkstra(int start) {
+	priority_queue<pair<int, int>> pq;
+
+	pq.push({ 0, start });
+	d[start] = 0;
+
+	while (!pq.empty())
+	{
+		int dist = pq.top().first;
+		int now = pq.top().second;
+		pq.pop();
+		if (d[now] < dist) continue;
+		for (int i = 0; i < graph[now].size(); i++) {
+			int cost = graph[now][i].second + dist;
+
+			if (cost < d[graph[now][i].first]) {
+				d[graph[now][i].first] = cost;
+				pq.push({ cost, graph[now][i].first });
+			}
+		}
+	}
+}
+
+void main() {
+
+	cin >> n >> m >> start;
+
+	//노드 그리기
+	for (int i = 0; i < m; i++)
+	{
+		int a, b, c;
+		cin >> a >> b >> c;
+		graph[a].push_back({ b,c });
+	}
+
+	//테이블 초기화
+	fill(d, d + 100001, INF);
+
+	dijkstra(start);
+	for (int i = 1; i <= n; i++) {
+		if (d[i] == INF) {
+			cout << "INF" << '\n';
+		}
+		else
+		{
+			cout << d[i] << '\n';
+		}
+	}
+}
